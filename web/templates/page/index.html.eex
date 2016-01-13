@@ -1,5 +1,5 @@
 <div class="jumbotron">
-  <h2 style="font-size:150px">0</h2>
-  <button><a href="api/take">Take</a></button>
+  <h2 style="font-size:150px"><%= @ticket %></h2>
+  <a href="api/take"><button>Take</button></a>
 </div>
 

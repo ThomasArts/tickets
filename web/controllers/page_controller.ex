@@ -1,7 +1,9 @@
 defmodule Tickets.PageController do
   use Tickets.Web, :controller
-
+  
   def index(conn, _params) do
-    render conn, "index.html"
+    [{"ticket", n}] = :ets.lookup(:roll, "ticket")
+    render conn, "index.html", ticket: n
   end
+
 end

@@ -6,6 +6,9 @@ defmodule Tickets do
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
+    :ets.new(:roll, [:named_table, :public, read_concurrency: true])
+    :ets.insert(:roll, {"ticket", 1})
+    
     children = [
       # Start the endpoint when the application starts
       supervisor(Tickets.Endpoint, []),
@@ -21,6 +24,7 @@ defmodule Tickets do
     Supervisor.start_link(children, opts)
   end
 
+  
   # Tell Phoenix to update the endpoint configuration
   # whenever the application is updated.
   def config_change(changed, _new, removed) do
