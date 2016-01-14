@@ -16,7 +16,7 @@
       <header class="header">
         <nav role="navigation">
           <ul class="nav nav-pills pull-right">
-            <li><a href="api/reset"><button>Reset</button></a></li>
+            <li><a href="reset"><button>Reset</button></a></li>
           </ul>
         </nav>
         <span class="logo"></span>

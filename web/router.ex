@@ -17,6 +17,8 @@ defmodule Tickets.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    get "/reset", PageController, :reset
+    get "/take", PageController, :take
   end
 
   # Other scopes may use custom stacks.
