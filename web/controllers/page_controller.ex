@@ -5,15 +5,15 @@ defmodule Tickets.PageController do
     render conn, "index.html"
   end
 
-  def reset(conn, params) do
-    :ets.insert(:roll, {"ticket", 1})
-    index(conn, params)
+  def reset(conn, _params) do
+    Tickets.write(1)
+    text conn, "reset"
   end
 
   def take(conn, params) do
-    index(conn, params)
-    [{"ticket", n}] = :ets.lookup(:roll, "ticket")
-    :ets.insert(:roll, {"ticket", n+1})
+    n = Tickets.read
+    Tickets.write(n+1)
+    text conn, "#{n}"
   end
 
 end

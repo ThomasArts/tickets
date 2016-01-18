@@ -2,7 +2,6 @@ defmodule Tickets.PageView do
   use Tickets.Web, :view
 
   def ticket do
-    [{"ticket", n}] = :ets.lookup(:roll, "ticket")
-    n
+    File.read!("priv/static/ticket.txt")
   end
 end
