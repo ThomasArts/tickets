@@ -3,7 +3,32 @@ defmodule TicketDispenser_eqc do
 	use EQC.ExUnit
 	use EQC.StateM
 
-	alias Client, as: HTTPClient
+  defmodule ErlangClient do
+
+    def take do
+      {:ok, {{'HTTP/1.1', 200, 'OK'}, _, body}} =
+        :httpc.request(:get, {'http://localhost:4000/take', []}, [], [])
+      :erlang.list_to_integer(body)
+    end
+
+    def reset do
+      {:ok, {{'HTTP/1.1', 200, 'OK'}, _, body}} =
+        :httpc.request(:get, {'http://localhost:4000/reset', []}, [], [])
+      body
+    end
+
+    def start do
+      {:ok, []}
+    end
+
+    def stop do
+      :ok
+    end
+  end
+
+  
+	#alias Client, as: HTTPClient
+  alias ErlangClient, as: HTTPClient
 
 	def initial_state() do :undefined end
 	
@@ -25,9 +50,8 @@ defmodule TicketDispenser_eqc do
 	
 	def take_post(state, [], result), do: eq(result, state) 
 
-# weight state,
-#	  take: 10,
-#   reset: state
+  def weight(_, :take), do: 10
+  def weight(_, :reset), do: 1
 
   property "random_ticket_sequence" do
 		forall cmds <- commands(__MODULE__) do
