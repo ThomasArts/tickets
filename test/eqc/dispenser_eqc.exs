@@ -26,9 +26,32 @@ defmodule TicketDispenser_eqc do
     end
   end
 
+  defmodule IbrowseClient do
+
+    def take do
+      {:ok, '200', _, body} =
+        :ibrowse.send_req('http://localhost:4000/take', [], :get)
+      :erlang.list_to_integer(body)
+    end
+
+    def reset do
+      {:ok, '200', _, body} =
+        :ibrowse.send_req('http://localhost:4000/reset', [], :get)
+      body
+    end
+
+    def start do
+      :ibrowse.start
+    end
+
+    def stop do
+      :ibrowse.stop
+    end
+  end
+
   
 	#alias Client, as: HTTPClient
-  alias ErlangClient, as: HTTPClient
+  alias IbrowseClient, as: HTTPClient
 
 	def initial_state() do :undefined end
 	
