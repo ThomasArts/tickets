@@ -16,6 +16,7 @@ defmodule Client do
   end
 
   def test do
+    start
     take
     take
     take
@@ -26,8 +27,22 @@ defmodule Client do
     reset
     take
     take
-    spawn fn -> test end
-    spawn fn -> test end
+    spawn fn -> test1 end
+    spawn fn -> test1 end
   end
+
+   def test1 do
+    take
+    take
+    take
+    take
+    take
+    take
+    take
+    reset
+    take
+    take
+  end
+
   
 end
