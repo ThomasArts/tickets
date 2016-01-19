@@ -1,11 +1,11 @@
 defmodule Client do
 
-  defp take do
+  def take do
     {:ok, %HTTPoison.Response{status_code: 200, body: body}} = HTTPoison.get("http://localhost:4000/take")
-    body
+    String.to_integer(body)
   end
 
-  defp reset do
+  def reset do
     {:ok, %HTTPoison.Response{status_code: 200, body: body}} = HTTPoison.get("http://localhost:4000/reset")
     body
   end
@@ -13,6 +13,10 @@ defmodule Client do
   
   def start do
     HTTPoison.start
+  end
+
+  def stop do
+    :ok
   end
 
   def test do
@@ -39,7 +43,6 @@ defmodule Client do
     take
     take
     take
-    reset
     take
     take
   end
