@@ -50,8 +50,8 @@ defmodule TicketDispenser_eqc do
   end
 
   
-	#alias Client, as: HTTPClient
-  alias IbrowseClient, as: HTTPClient
+  alias Client, as: HTTPClient
+  # alias IbrowseClient, as: HTTPClient
 
 	def initial_state() do :undefined end
 	
@@ -71,7 +71,7 @@ defmodule TicketDispenser_eqc do
 
 	def take_next(state, _var, []), do: state+1 
 	
-	def take_post(state, [], result), do: eq(result, state) 
+	def take_post(state, [], result), do: satisfy result == state
 
   def weight(_, :take), do: 10
   def weight(_, :reset), do: 1
