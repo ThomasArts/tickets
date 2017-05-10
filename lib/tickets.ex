@@ -14,8 +14,6 @@ defmodule Tickets do
     children = [
       # Start the endpoint when the application starts
       supervisor(Tickets.Endpoint, []),
-      # Start the Ecto repository
-      supervisor(Tickets.Repo, []),
       # Here you could define other workers and supervisors as children
       # worker(Tickets.Worker, [arg1, arg2, arg3]),
     ]

@@ -16,29 +16,22 @@ defmodule Tickets.Web do
   below.
   """
 
+
   def model do
     quote do
-      use Ecto.Schema
-
-      import Ecto
-      import Ecto.Changeset
-      import Ecto.Query, only: [from: 1, from: 2]
+      # Define common model functionality
     end
   end
-
+  
   def controller do
     quote do
       use Phoenix.Controller
-
-      alias Tickets.Repo
-      import Ecto
-      import Ecto.Query, only: [from: 1, from: 2]
 
       import Tickets.Router.Helpers
       import Tickets.Gettext
     end
   end
-
+  
   def view do
     quote do
       use Phoenix.View, root: "web/templates"
@@ -65,9 +58,6 @@ defmodule Tickets.Web do
     quote do
       use Phoenix.Channel
 
-      alias Tickets.Repo
-      import Ecto
-      import Ecto.Query, only: [from: 1, from: 2]
       import Tickets.Gettext
     end
   end
