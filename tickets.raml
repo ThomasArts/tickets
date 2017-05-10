@@ -1,0 +1,30 @@
+#%RAML 0.8
+---
+
+title: Ticket dispenser
+version: v2
+baseUri: http://localhost:4000/
+mediaType:
+  application/json
+#List of media type to support
+
+#List of protocols to support for baseUri
+protocols: [ HTTP ]
+
+#===============================================================
+#  API booking
+#===============================================================
+
+        
+/take:
+  get:
+    description: Get a ticket  
+    responses:
+      200:
+        body:
+          schema: |
+            {
+                "type": "integer"
+            }
+              
+

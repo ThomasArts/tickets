@@ -13,7 +13,7 @@ defmodule Tickets.PageController do
   def take(conn, params) do
     n = Tickets.read
     Tickets.write(n+1)
-    text conn, "#{n}"
+    json conn, "#{n}"
   end
 
 end
